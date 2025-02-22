@@ -20,30 +20,30 @@ This implementation requires MATLAB 2018b or a more recent version, you also nee
 
  -  # Running NMPC-NMHE with GP corrections: 
 
-     1. For L-shape track uncomment lines 98-129 to load track data and lines 405-408 to apply corrections learned by Gaussian process regression (leanred mismatch between MPC predictions and ground truth from the vehicle model).
-     2. For special Oavl track uncomment lines 63-91 to load L-shaped track data and lines 405-408 to apply corrections learned by Gaussian process regression ((leanred mismatch between MPC predictions and ground truth from the vehicle model).
+     1. For the L-shape track uncomment lines 98-129 to load track data and lines 405-408 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
+     2. For special Oavl track uncomment lines 63-91 to load L-shaped track data and lines 405-408 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
      3. To run the controller/estimator for the normal oval track without any corrections, uncomment lines 29-59 in this case lines 405-408 will apply zero correction.
      
 
--  # Running NMPC-NMHE with neural network corrections: 
+-  # Running NMPC-NMHE with RNN neural network corrections: 
   ### To apply neural network predictions to correct the mismatch between MPC predictions and ground truth from the vehicle model do the following steps and run the script.
-     2. Comment out the part loading corrections data line 58,91 or 128 depending on the track, and comment out GP correction part in lines 405-408.
+  
+     1. Comment out the part loading GP corrections data in lines 58,91 or 128 depending on the track, and comment out the GP correction part in lines 405-408.
      3. Uncomment lines 134-137 to load the trained neural networks for the different errors to be corrected.
      4. Uncomment lines 389-400 to apply neural network predictions and make model mismatch corrections. 
        
-
-### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/NN_MPC-vs-ANFIS_MPC)
+### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/GA-optimized-MLP-based-LPV_MPC)
 
 ### If you find this work useful or use it in your work, please cite the main paper:
 
-Kebbati, Y., Puig, V., Ait-Oufroukh, N., Vigneron, V., & Ichalal, D. (2021, November). Optimized adaptive MPC for lateral control of autonomous vehicles. In 2021 9th International Conference on Control, Mechatronics and Automation (ICCMA) (pp. 95-103). IEEE.
+Kebbati, Y., Rauh, A., Ait-Oufroukh, N., Ichalal, D., & Vigneron, V. (2024). Learning-based model predictive control with moving horizon state estimation for autonomous racing. International Journal of Control, 1-11.
 
-@inproceedings{kebbati2021optimized,
-  title={Optimized adaptive MPC for lateral control of autonomous vehicles},
-  author={Kebbati, Yassine and Puig, Vicen{\c{c}} and Ait-Oufroukh, Naima and Vigneron, Vincent and Ichalal, Dalil},
-  booktitle={2021 9th International Conference on Control, Mechatronics and Automation (ICCMA)},
-  pages={95--103},
-  year={2021},
-  organization={IEEE}
+@article{kebbati2024learning,
+  title={Learning-based model predictive control with moving horizon state estimation for autonomous racing},
+  author={Kebbati, Yassine and Rauh, Andreas and Ait-Oufroukh, Naima and Ichalal, Dalil and Vigneron, Vincent},
+  journal={International Journal of Control},
+  pages={1--11},
+  year={2024},
+  publisher={Taylor \& Francis}
 }
 
