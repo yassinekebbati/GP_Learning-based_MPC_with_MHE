@@ -6,7 +6,7 @@ The paper is freely accessible at this link: [https://hal.science/hal-03485108v1
 
 ## Steps to run the code:
 
-This implementation requires MATLAB 2018b or a more recent version, you also need to have CASADI (all necessary files are included with the code).
+This implementation requires MATLAB, CASADI and at least one solver such as gurobi, quadprog...etc (all necessary files are included with the code).
 
 -  # Multishooting NMPC-NMHE: 
    ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon state estimation (NMHE) for autonomous racing
