@@ -1,8 +1,8 @@
 # GP_Learning-based_MPC_with_MHE
 
 
-This is the implementation of the work published in the following paper "Optimized adaptive MPC for lateral control of autonomous vehicles".
-The paper is freely accessible at this link: https://hal.science/hal-03485108v1/preview/ICCMA2021_YK_VP_NA_VV_DI_Optimized_adaptive_MPC_for_lateral_control_of.pdf 
+This is the implementation of the work published in the following paper "Learning-based model predictive control with moving horizon state estimation for autonomous racing".
+The paper is freely accessible at this link: [https://hal.science/hal-03485108v1/preview/ICCMA2021_YK_VP_NA_VV_DI_Optimized_adaptive_MPC_for_lateral_control_of.pdf ](https://univ-evry.hal.science/hal-04745064/) It is also available at International Journal of Control : https://www.tandfonline.com/doi/abs/10.1080/00207179.2024.2409305
 
 ## Steps to run the code:
 
