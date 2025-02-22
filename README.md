@@ -41,9 +41,9 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
 
 
 1. Run python script MLP_NMPC.py and it will build a simple neural network and train it to predict model mismatch for one parameter such as lateral position for instance, once finished the trained neural network will be saved to '.h5' file.
-2. You can modify the script to build and train other neural networks for the other parameters such as longitudinal position X or vehicle orientation PSI...etc
-3. Once the neural network is available you net import it to matlab using the code in import_tf_network.m
-4. You can adjust the control algorithm provided in folder NMPC_NMHE to use the new generated neural network
+2. You can modify the script to build and train other neural networks for the other parameters such as longitudinal position X or vehicle orientation PSI...etc.
+3. Once the neural network is available you net import it to matlab using the code in import_tf_network.m.
+4. You can adjust the control algorithm provided in folder NMPC_NMHE to use the new generated neural network.
   
        
 ### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/GA-optimized-MLP-based-LPV_MPC)
