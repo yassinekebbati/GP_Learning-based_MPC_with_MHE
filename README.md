@@ -31,6 +31,20 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
      1. Comment out the part loading GP corrections data in lines 58,91 or 128 depending on the track, and comment out the GP correction part in lines 405-408.
      3. Uncomment lines 134-137 to load the trained neural networks for the different errors to be corrected.
      4. Uncomment lines 389-400 to apply neural network predictions and make model mismatch corrections. 
+
+- # Training the Gaussian process regressors for MPC model mismatch corrections
+  comming soon ..
+
+- # Building and training an MLP neural network to predict MPC model mismatch
+### For this part you need to have Python with the following libraries installed
+![libraries](https://github.com/user-attachments/assets/7db48209-08e3-4ea0-a23a-60a4daf6e053)
+
+
+1. Run python script MLP_NMPC.py and it will build a simple neural network and train it to predict model mismatch for one parameter such as lateral position for instance, once finished the trained neural network will be saved to '.h5' file.
+2. You can modify the script to build and train other neural networks for the other parameters such as longitudinal position X or vehicle orientation PSI...etc
+3. Once the neural network is available you net import it to matlab using the code in import_tf_network.m
+4. You can adjust the control algorithm provided in folder NMPC_NMHE to use the new generated neural network
+  
        
 ### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/GA-optimized-MLP-based-LPV_MPC)
 
