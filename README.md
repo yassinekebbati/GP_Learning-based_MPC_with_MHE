@@ -35,9 +35,10 @@ This implementation requires MATLAB 2018b or a more recent version, you also nee
 ### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/GA-optimized-MLP-based-LPV_MPC)
 
 ### If you find this work useful or use it in your work, please cite the main paper:
-
+#### APA:
 Kebbati, Y., Rauh, A., Ait-Oufroukh, N., Ichalal, D., & Vigneron, V. (2024). Learning-based model predictive control with moving horizon state estimation for autonomous racing. International Journal of Control, 1-11.
 
+#### BibTeX:
 @article{kebbati2024learning,
   title={Learning-based model predictive control with moving horizon state estimation for autonomous racing},
   author={Kebbati, Yassine and Rauh, Andreas and Ait-Oufroukh, Naima and Ichalal, Dalil and Vigneron, Vincent},
