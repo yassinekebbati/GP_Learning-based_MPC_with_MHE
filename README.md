@@ -9,21 +9,27 @@ The paper is freely accessible at this link: [https://hal.science/hal-03485108v1
 This implementation requires MATLAB 2018b or a more recent version, you also need to have CASADI (all necessary files are included with the code).
 
 -  # Multishooting NMPC-NMHE: 
-   ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon estimation (NMHE) for autonomous racing
-     1. Run the script 'Launch_MPC.m'.
-     2. The script loads trajectory data (Double lane change maneuver or other trajectories).
-     3. The script loads the parameters for the vehicle model and MPC controller (Params.mat).
-     4. Simulation starts with the chosen parameters. You can try different trajectories and change the MPC parameters to compare its performance.
-     5. Note that it is important to adjust MPC constraints accordingly, or it will diverge.
+   ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon state estimation (NMHE) for autonomous racing
+     1. Run the script 'NMPC_NMHE_multishooting.m'.
+     2. The script loads trajectory data (L-shaped/Oval racing track), lines 29-59 load the Normal oval track, lines 63-93 load the L-shaped track, and lines 98-127 load the special oval track.
+     3. The script loads the GP corrections for the vehicle model based on the type of track, you can find this in lines 58 and 91.
+     4. The script will also define the vehicle and controller parameters, which are used within the CASADI framework to create controller and estimator objects.
+     5. Simulation starts with the chosen parameters. You can try different trajectories and change the MPC parameters to compare its performance.
+     6. Note that it is important to adjust MPC constraints accordingly, or it will diverge.
 
 
- -  # PSO_MPC: 
-    ### This code optimizes the MPC parameters (Np, Nc, Q, R, etc.) with an enhanced PSO algorithm through iterative simulations
+ -  # Running NMPC-NMHE with GP corrections: 
 
-     1. Run the script 'PSO_MPC.m'.
-     2. The script sets up the optimization problem through the script "mpc_param.m", and executes the optimization through the script "PSO_test.m".
-     3. The code simulates the vehicle model in "MPC.slx" to optimize the controller parameters by minimizing the cost function defined in "mpc_param" (please check the paper for more details)
-     4. At the end of the optimization, the data of optimal parameters will be saved in an Excel file (check "mpc_param" to know which file) 
+     1. For L-shape track uncomment lines 98-129 to load track data and lines 405-408 to apply corrections learned by Gaussian process regression (leanred mismatch between MPC predictions and ground truth from the vehicle model).
+     2. For special Oavl track uncomment lines 63-91 to load L-shaped track data and lines 405-408 to apply corrections learned by Gaussian process regression ((leanred mismatch between MPC predictions and ground truth from the vehicle model).
+     3. To run the controller/estimator for the normal oval track without any corrections, uncomment lines 29-59 in this case lines 405-408 will apply zero correction.
+     
+
+-  # Running NMPC-NMHE with neural network corrections: 
+  ### To apply neural network predictions to correct the mismatch between MPC predictions and ground truth from the vehicle model do the following steps and run the script.
+     2. Comment out the part loading corrections data line 58,91 or 128 depending on the track, and comment out GP correction part in lines 405-408.
+     3. Uncomment lines 134-137 to load the trained neural networks for the different errors to be corrected.
+     4. Uncomment lines 389-400 to apply neural network predictions and make model mismatch corrections. 
        
 
 ### You might want to check a closely related implementation in this repository (https://github.com/yassinekebbati/NN_MPC-vs-ANFIS_MPC)
