@@ -6,9 +6,10 @@ The paper is freely accessible at this link: [https://hal.science/hal-03485108v1
 
 ## Steps to run the code:
 
-This implementation requires MATLAB 2018b or a more recent version.
--  # DMPC: 
-   ### This part is an implementation of discrete MPC with Laguere function for linear systems (vehicle lateral control in this case)
+This implementation requires MATLAB 2018b or a more recent version, you also need to have CASADI (all necessary files are included with the code).
+
+-  # Multishooting NMPC-NMHE: 
+   ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon estimation (NMHE) for autonomous racing
      1. Run the script 'Launch_MPC.m'.
      2. The script loads trajectory data (Double lane change maneuver or other trajectories).
      3. The script loads the parameters for the vehicle model and MPC controller (Params.mat).
