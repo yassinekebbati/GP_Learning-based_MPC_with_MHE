@@ -26,8 +26,8 @@ This implementation requires MATLAB 2018b or a more recent version, you also nee
      
 
 -  # Running NMPC-NMHE with RNN neural network corrections: 
-  ### To apply neural network predictions to correct the mismatch between MPC predictions and ground truth from the vehicle model do the following steps and run the script.
-  
+  ### To apply RNN predictions to correct the mismatch between MPC predictions and ground truth from the vehicle model do the following steps and run the script.
+
      1. Comment out the part loading GP corrections data in lines 58,91 or 128 depending on the track, and comment out the GP correction part in lines 405-408.
      3. Uncomment lines 134-137 to load the trained neural networks for the different errors to be corrected.
      4. Uncomment lines 389-400 to apply neural network predictions and make model mismatch corrections. 
