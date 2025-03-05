@@ -10,7 +10,7 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
 
 -  # Multishooting NMPC-NMHE: 
    ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon state estimation (NMHE) for autonomous racing
-     1. Run the script 'NMPC_NMHE_multishooting.m'.
+     1. Unzip the cassadi zip file to the respective folder and run the script 'NMPC_NMHE_multishooting.m'.
      2. The script loads trajectory data (L-shaped/Oval racing track), lines 29-59 load the Normal oval track, lines 63-93 load the L-shaped track, and lines 98-127 load the special oval track.
      3. The script loads the GP corrections for the vehicle model based on the type of track, you can find this in lines 58 and 91.
      4. The script will also define the vehicle and controller parameters, which are used within the CASADI framework to create controller and estimator objects.
