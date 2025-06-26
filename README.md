@@ -33,6 +33,9 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
      4. Uncomment lines 389-400 to apply neural network predictions and make model mismatch corrections. 
 
 - # Training the Gaussian process regressors for MPC model mismatch corrections
+  ### For this part you need to have Python with the following libraries installed
+  ![image](https://github.com/user-attachments/assets/3f590a22-b4b6-4c76-b7ad-69e176f68b5a)
+
   ### To build the Gaussian process regressors and train them with data from the previous lap drive, do the following:
   1. Run the Python script named GP_model_train.py (in folder GP_MLP_for_NMPC_NMHE) after adjusting the right track data in lines 19-21, and the right model saving option with the correct name in lines 98-106
   2. Put the generated model file in the folder NMPC_NMHE
