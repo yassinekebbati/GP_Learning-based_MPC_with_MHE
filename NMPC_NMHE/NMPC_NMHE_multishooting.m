@@ -90,6 +90,9 @@ load RacelineL
 xs = [Xp ; Yp ; zeros(1,length(Yp)); vxRef(1:length(Yp))]; % Reference posture.
 % load L_correction %% load learned GP corrections for L track
 
+% %load gaussian process trained model
+GP = py.joblib.load('GP_model_Ltrack');
+load GP_model_Ltrack_Mean
 %% =================================================================================================================
 
 
@@ -126,6 +129,9 @@ xs = [Xp ; Yp ; zeros(1,length(Yp)); vxRef(1:length(Yp))]; % Reference posture.
 % load RacelineO;
 % xs = [Xp ; Yp ; zeros(1,length(Yp)); vxRef(1:length(Yp))];% vyRef; wRef]; % Reference posture.
 % load O_correction %% load learned GP corrections for Oval track
+% %load gaussian process trained model
+% GP = py.joblib.load('GP_model_Otrack');
+% load GP_model_Otrack_Mean
 % %%=================================================================================================================
 
 
@@ -387,27 +393,40 @@ for i = 1:sim_tim/T
     end
     
 %% Neural Network correction======================================================================================================= 
-    xx0(:,i) = x0;
-    args.p   = [xx0(:,i);xs(:,i+L)]; % set the values of the parameters vector
+    %xx0(:,i) = x0;
+    %args.p   = [xx0(:,i);xs(:,i+L)]; % set the values of the parameters vector
 
-    if i>1 
-        ex = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeanx', xstdevx', ymeanx,ystdevx', modx);
-        ey = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeany', xstdevy', ymeany,ystdevy', mody);
-        epsi = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeanpsi', xstdevpsi', ymeanpsi,ystdevpsi', modpsi);
-        xx0(:,i) = x0+[ex;ey;epsi;0];
-    else
-        xx0(:,i) = x0;
-    end
+    %if i>1 
+    %    ex = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeanx', xstdevx', ymeanx,ystdevx', modx);
+    %    ey = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeany', xstdevy', ymeany,ystdevy', mody);
+    %    epsi = pred([(xx(:,i-1) - xx0(:,i-1));u_cl(i-1,:)';xx(:,i)] ,xmeanpsi', xstdevpsi', ymeanpsi,ystdevpsi', modpsi);
+    %    xx0(:,i) = x0+[ex;ey;epsi;0];
+    %else
+    %    xx0(:,i) = x0;
+    %end
 %%==========================================================================================================================
 
 
    
-% %% Gaussian process (GP) correction=============================================================================================================
-%     %%correction
-%     xx0(:,i) = x0+[e_x(i);e_y(i);e_psi(i);e_vx(i)];
-%     args.p   = [xx0(:,i);xs(:,i+L)]; % set the values of the parameters vector    with gp correction added
-% 
-% %% =========================================================================================================================
+%% Gaussian process (GP) correction=============================================================================================================
+    %%Run GP predictions and apply correction predictions
+    if i>1
+        gp_cor = double(GP.predict(py.list({([u_cl(i-1,:) xx0(:,i-1)'] - xmean)./xstdev}))).*ystdev+ymean;
+        % gp_cor = GP.predict(py.list({[u_cl(i-1,:) xx0(:,i-1)']}));
+    else
+        gp_cor =[0 0 0 0];
+    end   
+    xx0(:,i) = x0+gp_cor';
+%=================================================================================================================================================
+   
+    % % Apply directly preloaded GP predictions  =================================================================================
+    % xx0(:,i) = x0+[e_x(i);e_y(i);e_psi(i);e_vx(i)];
+    %===============================================================================================================================
+    
+    % % % No correction applied ====================================================================================================
+    % xx0(:,i) = x0;
+    %================================================================================================================================
+    args.p   = [xx0(:,i);xs(:,i+L)]; % set the values of the parameters vector    with gp correction added
     
     args.x0 = [reshape(X0,n_states*(N+1),1);reshape(u0',n_controls*N,1)]; % initial value of the optimization variables
     
