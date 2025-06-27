@@ -4,12 +4,13 @@ import _pickle as pickle
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import pandas as pd
+import joblib
 from sklearn.preprocessing import StandardScaler
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.gaussian_process.kernels import RBF, ConstantKernel as C, WhiteKernel
+from sklearn.gaussian_process.kernels import RBF, ConstantKernel as C, WhiteKernel, RationalQuadratic as RQ
 from sklearn.metrics import mean_squared_error, r2_score, explained_variance_score
-from plots import plot_true_predicted_variance
+
 
 
 
