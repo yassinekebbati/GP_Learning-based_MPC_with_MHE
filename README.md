@@ -11,7 +11,7 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
 -  # Multishooting NMPC-NMHE: 
    ### This part is the implementation of nonlinear model predictive control (NMPC) with nonlinear moving horizon state estimation (NMHE) for autonomous racing
      1. Unzip the cassadi zip file to the respective folder and run the script 'NMPC_NMHE_multishooting.m'.
-     2. The script loads trajectory data (L-shaped/Oval racing track), lines 29-59 load the Normal oval track, lines 63-93 load the L-shaped track, and lines 98-127 load the special oval track.
+     2. The script loads trajectory data (L-shaped/Oval racing track), lines 29-59 load the Normal oval track, lines 63-100 load the L-shaped track, and lines 106-144 load the special oval track.
      3. The script loads the GP corrections for the vehicle model based on the type of track, you can find this in lines 58 and 91.
      4. The script will also define the vehicle and controller parameters, which are used within the CASADI framework to create controller and estimator objects.
      5. Simulation starts with the chosen parameters. You can try different trajectories and change the MPC parameters to compare its performance.
@@ -20,9 +20,9 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
 
  -  # Running NMPC-NMHE with GP corrections: 
 
-     1. For the L-shape track uncomment lines 98-129 to load track data and lines 405-408 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
-     2. For special Oavl track uncomment lines 63-91 to load L-shaped track data and lines 405-408 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
-     3. To run the controller/estimator for the normal oval track without any corrections, uncomment lines 29-59 in this case lines 405-408 will apply zero correction.
+     1. For the L-shape track uncomment lines 63-101 to load track data and lines 421-429 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
+     2. For the Oavl track uncomment lines 106-145 to load L-shaped track data and lines 421-429 to apply corrections learned by Gaussian process regression (learned mismatch between MPC predictions and ground truth from the vehicle model).
+     3. To run the controller/estimator for the normal oval track without any corrections, uncomment lines 29-59, and comment lines 421-438 will apply zero correction.
      
 
 -  # Running NMPC-NMHE with RNN neural network corrections: 
@@ -40,7 +40,7 @@ This implementation requires MATLAB, CASADI and at least one solver such as guro
   1. Run the Python script named GP_model_train.py (in folder GP_MLP_for_NMPC_NMHE) after adjusting the right track data in lines 19-21, and the right model saving option with the correct name in lines 98-106
   2. Put the generated model file in the folder NMPC_NMHE
   3. Extract the saved mean and deviation values for output and input data that are saved in the corresponding Excel file ("GP_model_Ltrack_Scale.xlsx" for the Ltrack  GP model, for instance)
-  4. Save the extracted mean and standard deviation values into a mat file in the folder NMPC_NMHE with the correct name ("GP_model_Ltrack_Mean.mat" for the Ltrack, for instance)
+  4. Add the generated excel file with mean and standard deviation values into the folder NMPC_NMHE, or alternatively you can save the extracted mean and standard deviation values into a mat file in the same folder with the correct name ("GP_model_Ltrack_Mean.mat" for the Ltrack, for instance) and load it in matlab script NMPC_NMHE_multishooting.m by uncommenting lines 95 or 139 based on the chosen track.
   5. Then run the Multishooting NMPC-NMHE as described in the previous section.
 
 - # Building and training an MLP neural network to predict MPC model mismatch
