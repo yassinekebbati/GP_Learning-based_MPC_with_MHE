@@ -92,7 +92,12 @@ xs = [Xp ; Yp ; zeros(1,length(Yp)); vxRef(1:length(Yp))]; % Reference posture.
 
 % %load gaussian process trained model
 GP = py.joblib.load('GP_model_Ltrack');
-load GP_model_Ltrack_Mean
+% load GP_model_Ltrack_Mean %%load mean and standard values from mat file
+file = "GP_model_Ltrack_Scale";
+xmean = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','B2:B2')));
+xstdev = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','C2:C2')));
+ymean = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','D2:D2')));
+ystdev = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','E2:E2')));
 %% =================================================================================================================
 
 
@@ -131,7 +136,12 @@ load GP_model_Ltrack_Mean
 % load O_correction %% load learned GP corrections for Oval track
 % %load gaussian process trained model
 % GP = py.joblib.load('GP_model_Otrack');
-% load GP_model_Otrack_Mean
+%%% load GP_model_Otrack_Mean %%load mean and standard values from mat file
+% file = "GP_model_Otrack_Scale";   
+% xmean = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','B2:B2')));
+% xstdev = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','C2:C2')));
+% ymean = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','D2:D2')));
+% ystdev = str2num(cell2mat(readcell(file,'Sheet','Sheet1','Range','E2:E2')));
 % %%=================================================================================================================
 
 
